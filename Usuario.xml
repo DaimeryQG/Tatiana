@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <!-- Tipo complejo para Paciente -->
+    <xs:complexType name="PacienteType">
+        <xs:sequence>
+            <xs:element name="PacienteID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="P-[0-9]{5}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Nombre">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Apellido">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="FechaNacimiento" type="xs:date"/>
+            <xs:element name="Genero">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Masculino"/>
+                        <xs:enumeration value="Femenino"/>
+                        <xs:enumeration value="Otro"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Telefono">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="52 \d{3} \d{3} \d{4}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="CorreoElectronico">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Direccion">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="TipoSangre">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="(A|B|AB|O)[+-]"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="HistorialMedicoID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Tipo complejo para Doctor -->
+    <xs:complexType name="DoctorType">
+        <xs:sequence>
+            <xs:element name="DoctorID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="D-[0-9]{5}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Nombre">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Especialidad">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="HospitalID" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Elemento Cliente con elección entre Paciente y Doctor -->
+    <xs:element name="Cliente">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="Paciente" type="PacienteType"/>
+                <xs:element name="Doctor" type="DoctorType"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Elemento para definir las operaciones de alta, modificar, eliminar y consultar -->
+    <xs:element name="OperacionCliente">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Accion">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Alta"/>
+                            <xs:enumeration value="Modificar"/>
+                            <xs:enumeration value="Eliminar"/>
+                            <xs:enumeration value="Consultar"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Cliente">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="Paciente" type="PacienteType"/>
+                            <xs:element name="Doctor" type="DoctorType"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
