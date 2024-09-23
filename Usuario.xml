@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 
-    <!-- Tipo complejo para Paciente -->
     <xs:complexType name="PacienteType">
         <xs:sequence>
             <xs:element name="PacienteID">
@@ -76,7 +75,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Tipo complejo para Doctor -->
     <xs:complexType name="DoctorType">
         <xs:sequence>
             <xs:element name="DoctorID">
@@ -106,7 +104,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Elemento Cliente con elección entre Paciente y Doctor -->
     <xs:element name="Cliente">
         <xs:complexType>
             <xs:choice>
@@ -116,7 +113,6 @@
         </xs:complexType>
     </xs:element>
 
-    <!-- Elemento para definir las operaciones de alta, modificar, eliminar y consultar -->
     <xs:element name="OperacionCliente">
         <xs:complexType>
             <xs:sequence>
