@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 
+    <!-- Definición del tipo Paciente -->
     <xs:complexType name="PacienteType">
         <xs:sequence>
             <xs:element name="PacienteID">
@@ -75,6 +76,7 @@
         </xs:sequence>
     </xs:complexType>
 
+    <!-- Definición del tipo Doctor -->
     <xs:complexType name="DoctorType">
         <xs:sequence>
             <xs:element name="DoctorID">
@@ -104,6 +106,7 @@
         </xs:sequence>
     </xs:complexType>
 
+    <!-- Definición del elemento Cliente -->
     <xs:element name="Cliente">
         <xs:complexType>
             <xs:choice>
@@ -113,6 +116,7 @@
         </xs:complexType>
     </xs:element>
 
+    <!-- Definición del elemento OperacionCliente -->
     <xs:element name="OperacionCliente">
         <xs:complexType>
             <xs:sequence>
