@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:complexType name="CitaType">
+        <xs:sequence>
+            <xs:element name="ID_Cita" type="xs:int"/>
+            <xs:element name="ID_Paciente" type="xs:string"/>
+            <xs:element name="ID_Doctor" type="xs:string"/>
+            <xs:element name="FechaCita" type="xs:dateTime"/>
+            <xs:element name="Estado" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="GestionCitasMedicas">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CrearCita" type="OperacionCrearCitaType"/>
+                <xs:element name="ActualizarCita" type="OperacionActualizarCitaType"/>
+                <xs:element name="EliminarCita" type="OperacionEliminarCitaType"/>
+                <xs:element name="ConsultarCita" type="OperacionConsultarCitaType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Operación Crear Cita -->
+    <xs:complexType name="OperacionCrearCitaType">
+        <xs:sequence>
+            <xs:element name="ID_Paciente" type="xs:string"/>
+            <xs:element name="ID_Doctor" type="xs:string"/>
+            <xs:element name="FechaCita" type="xs:dateTime"/>
+        </xs:sequence>
+        <xs:attribute name="Resultado" type="xs:int" use="optional"/>
+    </xs:complexType>
+
+    <!-- Operación Actualizar Cita -->
+    <xs:complexType name="OperacionActualizarCitaType">
+        <xs:sequence>
+            <xs:element name="ID_Cita" type="xs:int"/>
+            <xs:element name="NuevaFechaCita" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="NuevoEstado" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Operación Eliminar Cita -->
+    <xs:complexType name="OperacionEliminarCitaType">
+        <xs:sequence>
+            <xs:element name="ID_Cita" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Operación Consultar Cita -->
+    <xs:complexType name="OperacionConsultarCitaType">
+        <xs:sequence>
+            <xs:element name="ID_Cita" type="xs:int"/>
+        </xs:sequence>
+        <xs:attribute name="Resultado" type="CitaType" use="optional"/>
+    </xs:complexType>
+
+</xs:schema>
+
