@@ -94,17 +94,19 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="Especialidad">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1"/>
-                        <xs:maxLength value="50"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="HospitalID" type="xs:int"/>
-        </xs:sequence>
-    </xs:complexType>
+            <!-- Definir el atributo Especialidad  -->
+ <xs:element name="Especialidad">
+    <xs:simpleType>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Medicina General"/>
+            <xs:enumeration value="Pediatría"/>
+            <xs:enumeration value="Dermatología"/>
+            <xs:enumeration value="Ginecología"/>
+            <xs:enumeration value="Oftalmología"/>
+            <xs:enumeration value="Odontologia"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:element>                 
 
     <!-- Definición del elemento Cliente -->
     <xs:element name="Cliente">
