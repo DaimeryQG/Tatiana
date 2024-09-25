@@ -55,7 +55,14 @@
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:minLength value="1"/>
-                        <xs:maxLength value="100"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="TipoSangre">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="(A|B|AB|O)[+-]"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -66,7 +73,20 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="Especialidad" minOccurs="0">
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definición del tipo Doctor -->
+    <xs:complexType name="DoctorType">
+        <xs:sequence>
+            <xs:element name="DoctorID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="D-[0-9]{5}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Nombre">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:minLength value="1"/>
@@ -74,47 +94,55 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="HospitalID" minOccurs="0" type="xs:int"/>
+            <xs:element name="Especialidad">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Medicina General"/>
+                        <xs:enumeration value="Pediatría"/>
+                        <xs:enumeration value="Dermatología"/>
+                        <xs:enumeration value="Ginecología"/>
+                        <xs:enumeration value="Oftalmología"/>
+                        <xs:enumeration value="Odontología"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Definición del elemento CrearUsuario -->
-    <xs:element name="CrearUsuario">
+    <!-- Definición del elemento Cliente -->
+    <xs:element name="Cliente">
         <xs:complexType>
-            <xs:sequence>
+            <xs:choice>
                 <xs:element name="Paciente" type="PacienteType"/>
-            </xs:sequence>
-        </xs:complexType>
-        <xs:element name="Regresa" type="xs:string"/>
-    </xs:element>
-
-    <!-- Definición del elemento ModificarUsuario -->
-    <xs:element name="ModificarUsuario">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="PacienteID" type="xs:string"/>
-                <xs:element name="Paciente" type="PacienteType" minOccurs="0"/>
-            </xs:sequence>
+                <xs:element name="Doctor" type="DoctorType"/>
+            </xs:choice>
         </xs:complexType>
     </xs:element>
 
-    <!-- Definición del elemento EliminarUsuario -->
-    <xs:element name="EliminarUsuario">
+    <!-- Definición del elemento OperacionCliente -->
+    <xs:element name="OperacionCliente">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="PacienteID" type="xs:string"/>
+                <xs:element name="Accion">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Alta"/>
+                            <xs:enumeration value="Modificar"/>
+                            <xs:enumeration value="Eliminar"/>
+                            <xs:enumeration value="Consultar"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Cliente">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="Paciente" type="PacienteType"/>
+                            <xs:element name="Doctor" type="DoctorType"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
-    </xs:element>
-
-    <!-- Definición del elemento ConsultarUsuario -->
-    <xs:element name="ConsultarUsuario">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="PacienteID" type="xs:string"/>
-            </xs:sequence>
-        </xs:complexType>
-        <xs:element name="Regresa" type="PacienteType"/>
     </xs:element>
 
 </xs:schema>
