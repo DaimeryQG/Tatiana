@@ -5,10 +5,10 @@ CREATE TABLE Usuarios (
     email VARCHAR(100) UNIQUE NOT NULL,
     telefono VARCHAR(20),
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
-    CURP VARCHAR(18),
+    CURP VARCHAR(18) UNIQUE NOT NULL,
     RFC VARCHAR(13),
-    ciudad VARCHAR(50),
-    estado VARCHAR(50),
+    ciudad VARCHAR(50) NOT NULL,
+    estado VARCHAR(50) NOT NULL,
     INDEX idx_email (email) -- Índice para mejorar la búsqueda por email
 );
 
@@ -64,8 +64,10 @@ CREATE TABLE Recordatorios (
 CREATE TABLE DisponibilidadDoctores (
     disponibilidad_id INT AUTO_INCREMENT PRIMARY KEY,
     doctor_id INT NOT NULL,
+    cita_id INT NOT NULL,
     dia ENUM('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo') NOT NULL,
     hora_inicio TIME NOT NULL,
     hora_fin TIME NOT NULL,
     FOREIGN KEY (doctor_id) REFERENCES Doctores(doctor_id)
+    FOREIGN KEY (cita_id) REFERENCES Citas(cita_id)
 );
