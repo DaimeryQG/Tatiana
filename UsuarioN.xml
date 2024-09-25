@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 
-    <!-- Definición del tipo Paciente -->
-    <xs:complexType name="PacienteType">
+    <!-- Definición del tipo Cliente -->
+    <xs:complexType name="ClienteType">
         <xs:sequence>
-            <xs:element name="PacienteID">
+            <xs:element name="ClienteID">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <xs:pattern value="P-[0-9]{5}"/>
+                        <xs:pattern value="C-[0-9]{5}"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -75,6 +75,14 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="HospitalID" minOccurs="0" type="xs:int"/>
+            <xs:element name="TipoCliente">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Doctor"/>
+                        <xs:enumeration value="Paciente"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 
@@ -82,7 +90,7 @@
     <xs:element name="CrearUsuario">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Paciente" type="PacienteType"/>
+                <xs:element name="Cliente" type="ClienteType"/>
             </xs:sequence>
         </xs:complexType>
         <xs:element name="Regresa" type="xs:string"/>
@@ -92,8 +100,8 @@
     <xs:element name="ModificarUsuario">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="PacienteID" type="xs:string"/>
-                <xs:element name="Paciente" type="PacienteType" minOccurs="0"/>
+                <xs:element name="ClienteID" type="xs:string"/>
+                <xs:element name="Cliente" type="ClienteType" minOccurs="0"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -102,7 +110,7 @@
     <xs:element name="EliminarUsuario">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="PacienteID" type="xs:string"/>
+                <xs:element name="ClienteID" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -111,10 +119,10 @@
     <xs:element name="ConsultarUsuario">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="PacienteID" type="xs:string"/>
+                <xs:element name="ClienteID" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
-        <xs:element name="Regresa" type="PacienteType"/>
+        <xs:element name="Regresa" type="ClienteType"/>
     </xs:element>
 
 </xs:schema>
