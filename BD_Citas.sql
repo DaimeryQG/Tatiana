@@ -45,11 +45,11 @@ CREATE TABLE Citas (
     INDEX idx_fecha_cita (fecha_cita) -- Índice para mejorar la búsqueda por fecha
 );
 
-
 -- Creación de la tabla Recordatorios
 CREATE TABLE Recordatorios (
     recordatorio_id INT AUTO_INCREMENT PRIMARY KEY,
     cita_id INT NOT NULL,
+    usuario_id INT NOT NULL,
     fecha_recordatorio DATETIME,
     mensaje TEXT,
     FOREIGN KEY (cita_id) REFERENCES Citas(cita_id)
