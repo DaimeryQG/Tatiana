@@ -45,15 +45,6 @@ CREATE TABLE Citas (
     INDEX idx_fecha_cita (fecha_cita) -- Índice para mejorar la búsqueda por fecha
 );
 
--- Creación de la tabla HistorialCitas
-CREATE TABLE HistorialCitas (
-    historial_id INT AUTO_INCREMENT PRIMARY KEY,
-    cita_id INT NOT NULL,
-    fecha_modificacion DATETIME DEFAULT CURRENT_TIMESTAMP,
-    estado_anterior VARCHAR(50),
-    estado_nuevo VARCHAR(50),
-    FOREIGN KEY (cita_id) REFERENCES Citas(cita_id)
-);
 
 -- Creación de la tabla Recordatorios
 CREATE TABLE Recordatorios (
