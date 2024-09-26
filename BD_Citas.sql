@@ -52,7 +52,7 @@ CREATE TABLE Recordatorios (
     usuario_id INT NOT NULL,
     fecha_recordatorio DATETIME,
     mensaje TEXT,
-    FOREIGN KEY (cita_id) REFERENCES Citas(cita_id)
+    FOREIGN KEY (cita_id) REFERENCES Citas(cita_id) -- Falta la llave foranea a usuarios
 );
 
 -- Creación de la tabla DisponibilidadDoctores
