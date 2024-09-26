@@ -4,13 +4,15 @@
     <!-- Definición del tipo Cliente -->
     <xs:complexType name="ClienteType">
         <xs:sequence>
-            <xs:element name="ClienteID">
+
+            <xs:element name="UsuarioID">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <xs:pattern value="C-[0-9]{5}"/>
+                        <xs:pattern value="U-[0-9]{5}"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+
             <xs:element name="Nombre">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -19,6 +21,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+
             <xs:element name="Apellido">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -27,7 +30,18 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="FechaNacimiento" type="xs:date"/>
+
+            <xs:element name="FechaNacimiento">
+                <xs:simpleType>
+                    <xs:restriction base="xs:date">
+                        <xs:minInclusive value="1900-01-01"/>
+                        <xs:maxInclusive value="2024-12-31"/> 
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="FechaRegistro" type="xs:dateTime"/>
+
             <xs:element name="Genero">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -37,6 +51,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+
             <xs:element name="Telefono">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -44,6 +59,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+
             <xs:element name="CorreoElectronico">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -51,6 +67,23 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+
+            <xs:element name="CURP">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[A-Z]{4}\d{6}[A-Z]{6}\d{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="RFC">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[A-Z]{3,4}\d{6}[A-Z0-9]{3}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
             <xs:element name="Direccion">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -59,13 +92,25 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="HistorialMedicoID">
+
+            <xs:element name="Ciudad">
                 <xs:simpleType>
-                    <xs:restriction base="xs:int">
-                        <xs:minInclusive value="1"/>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="50"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+
+            <xs:element name="Estado">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
             <xs:element name="Especialidad" minOccurs="0">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -74,7 +119,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="HospitalID" minOccurs="0" type="xs:int"/>
+
             <xs:element name="TipoCliente">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -83,46 +128,8 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+
         </xs:sequence>
     </xs:complexType>
-
-    <!-- Definición del elemento CrearUsuario -->
-    <xs:element name="CrearUsuario">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="Cliente" type="ClienteType"/>
-            </xs:sequence>
-        </xs:complexType>
-        <xs:element name="Regresa" type="xs:string"/>
-    </xs:element>
-
-    <!-- Definición del elemento ModificarUsuario -->
-    <xs:element name="ModificarUsuario">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="ClienteID" type="xs:string"/>
-                <xs:element name="Cliente" type="ClienteType" minOccurs="0"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <!-- Definición del elemento EliminarUsuario -->
-    <xs:element name="EliminarUsuario">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="ClienteID" type="xs:string"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <!-- Definición del elemento ConsultarUsuario -->
-    <xs:element name="ConsultarUsuario">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="ClienteID" type="xs:string"/>
-            </xs:sequence>
-        </xs:complexType>
-        <xs:element name="Regresa" type="ClienteType"/>
-    </xs:element>
 
 </xs:schema>
