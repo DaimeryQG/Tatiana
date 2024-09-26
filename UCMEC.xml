@@ -2,22 +2,22 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 
     <!-- Definición del tipo de operación de crear cliente -->
-    <xs:complexType name="CrearClienteRequestType">
+    <xs:complexType name="CrearUsuarioRequestType">
         <xs:sequence>
-            <xs:element name="Cliente" type="ClienteType"/>
+            <xs:element name="UsuarioID" type="UsuarioType"/>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="CrearClienteResponseType">
+    <xs:complexType name="CrearUsuarioResponseType">
         <xs:sequence>
             <xs:element name="Mensaje" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
     <!-- Definición del tipo de operación de consultar clientes -->
-    <xs:complexType name="ConsultarClientesResponseType">
+    <xs:complexType name="ConsultarUsuarioResponseType">
         <xs:sequence>
-            <xs:element name="Clientes">
+            <xs:element name="UsuarioID">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:pattern value="U-[0-9]{5}"/>
@@ -28,7 +28,7 @@
     </xs:complexType>
 
     <!-- Definición del tipo de operación de modificar cliente -->
-    <xs:complexType name="ModificarClienteRequestType">
+    <xs:complexType name="ModificarUsuarioRequestType">
         <xs:sequence>
             <xs:element name="UsuarioID">
                 <xs:simpleType>
@@ -40,14 +40,14 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="ModificarClienteResponseType">
+    <xs:complexType name="ModificarUsuarioResponseType">
         <xs:sequence>
             <xs:element name="Mensaje" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
     <!-- Definición del tipo de operación de eliminar cliente -->
-    <xs:complexType name="EliminarClienteRequestType">
+    <xs:complexType name="EliminarUsuarioRequestType">
         <xs:sequence>
             <xs:element name="UsuarioID">
                 <xs:simpleType>
@@ -59,7 +59,7 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="EliminarClienteResponseType">
+    <xs:complexType name="EliminarUsuarioResponseType">
         <xs:sequence>
             <xs:element name="Mensaje" type="xs:string"/>
         </xs:sequence>

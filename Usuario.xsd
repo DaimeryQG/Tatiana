@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 
     <!-- Definición del tipo Cliente -->
-    <xs:complexType name="ClienteType">
+    <xs:complexType name="UsuarioType">
         <xs:sequence>
 
             <xs:element name="UsuarioID">
@@ -120,7 +120,7 @@
                 </xs:simpleType>
             </xs:element>
 
-            <xs:element name="TipoCliente">
+            <xs:element name="TipoUsuario">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:enumeration value="Doctor"/>
