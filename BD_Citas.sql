@@ -1,6 +1,6 @@
 -- Creación de la tabla Usuarios
 CREATE TABLE Usuarios (
-    usuario_id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id VARCHAR AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -12,7 +12,6 @@ CREATE TABLE Usuarios (
     ciudad VARCHAR(50) NOT NULL,
     estado VARCHAR(50) NOT NULL,
     direccion VARCHAR(100) NOT NULL,
-    especialidad VARCHAR(100) NOT NULL,
     tipo_usuario ENUM('Paciente', 'Doctor') NOT NULL, -- Campo para definir el tipo de usuario
     INDEX idx_email (email) -- Índice para mejorar la búsqueda por email
 );
@@ -28,6 +27,7 @@ CREATE TABLE Pacientes (
 CREATE TABLE Doctores (
     doctor_id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
+    especialidad VARCHAR(100) NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES Usuarios(usuario_id)
 );
 
