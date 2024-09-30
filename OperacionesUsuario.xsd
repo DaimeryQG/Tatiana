@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
-
-    <!-- Definición del tipo de operación de crear cliente -->
+ 
     <xs:complexType name="CrearUsuarioRequestType">
         <xs:sequence>
-            <xs:element name="UsuarioID" type="UsuarioType"/>
+            <xs:element name="UsuarioID" type="us:UsuarioType"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -14,7 +13,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Definición del tipo de operación de consultar clientes -->
     <xs:complexType name="ConsultarUsuarioResponseType">
         <xs:sequence>
             <xs:element name="UsuarioID">
@@ -27,7 +25,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Definición del tipo de operación de modificar cliente -->
     <xs:complexType name="ModificarUsuarioRequestType">
         <xs:sequence>
             <xs:element name="UsuarioID">
@@ -46,7 +43,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Definición del tipo de operación de eliminar cliente -->
     <xs:complexType name="EliminarUsuarioRequestType">
         <xs:sequence>
             <xs:element name="UsuarioID">

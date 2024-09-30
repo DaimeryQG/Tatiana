@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 
-    <!-- Definición del tipo Cliente -->
     <xs:complexType name="UsuarioType">
         <xs:sequence>
 
@@ -131,5 +130,14 @@
 
         </xs:sequence>
     </xs:complexType>
+
+    <xs:element name="Usuario">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Usuario" maxOccurs="unbounded" type="UsuarioType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
 
 </xs:schema>

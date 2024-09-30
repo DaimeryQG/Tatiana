@@ -67,4 +67,55 @@
     </xs:element>
     -->
 
+     <!-- Operación de Crear Cita -->
+     <xs:complexType name="CrearCitaRequestType">
+        <xs:sequence>
+            <xs:element name="Cita" type="CitaType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CrearCitaResponseType">
+        <xs:sequence>
+            <xs:element name="Mensaje" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Operación de Consultar Citas -->
+    <xs:complexType name="ConsultarCitasRequestType">
+        <xs:sequence>
+            <xs:element name="UsuarioID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="U-[0-9]{5}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>            
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ConsultarCitasResponseType">
+        <xs:sequence>
+            <xs:element name="Citas" minOccurs="0" maxOccurs="unbounded" type="CitaType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Operación de Eliminar Cita -->
+    <xs:complexType name="EliminarCitaRequestType">
+        <xs:sequence>
+            <xs:element name="CitaID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="C-[0-9]{5}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EliminarCitaResponseType">
+        <xs:sequence>
+            <xs:element name="Mensaje" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
 </xs:schema>

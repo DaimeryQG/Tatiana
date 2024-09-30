@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:complexType name="RecordatorioType">
+        <xs:sequence>
+            
+            <xs:element name="RecordatorioID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{5}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="CitaID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:pattern value="C-[0-9]{5}"/>
+                  </xs:restriction>  
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="UsuarioID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="U-[0-9]{5}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="fecha_recordatorio">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="mensaje" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="1000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="Recordatorios">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Recordatorio" maxOccurs="unbounded" type="RecordatorioType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="CrearRecordatorioRequestType">
+        <xs:sequence>
+            <xs:element name="Recordatorio" type="RecordatorioType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CrearRecordatorioResponseType">
+        <xs:sequence>
+            <xs:element name="Mensaje" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ConsultarRecordatoriosRequestType">
+        <xs:sequence>
+            <xs:element name="usuario_id" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ConsultarRecordatoriosResponseType">
+        <xs:sequence>
+            <xs:element name="Recordatorios" minOccurs="0" maxOccurs="unbounded" type="RecordatorioType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EliminarRecordatorioRequestType">
+        <xs:sequence>
+            <xs:element name="recordatorio_id" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EliminarRecordatorioResponseType">
+        <xs:sequence>
+            <xs:element name="Mensaje" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
