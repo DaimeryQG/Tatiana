@@ -57,14 +57,5 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Definición del elemento raíz para Citas
-    <xs:element name="Citas">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="Cita" maxOccurs="unbounded" type="CitaType"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    -->
 
 </xs:schema>
