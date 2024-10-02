@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:tns="http://example.com/usuario"
+                  targetNamespace="http://example.com/usuario">
+
+    <!-- Tipos definidos en el XSD -->
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://example.com/usuario"
+                   elementFormDefault="qualified">
+            <xs:import namespace="http://example.com/usuario" schemaLocation="usuario.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+
+    <!-- Mensajes para las operaciones -->
+    <wsdl:message name="CrearUsuarioRequest">
+        <wsdl:part name="usuario" element="tns:Usuario"/>
+    </wsdl:message>
+
+    <wsdl:message name="CrearUsuarioResponse">
+        <wsdl:part name="respuesta" element="xs:string"/>
+    </wsdl:message>
+
+    <wsdl:message name="ConsultarUsuarioRequest">
+        <wsdl:part name="usuarioID" element="tns:UsuarioID"/>
+    </wsdl:message>
+
+    <wsdl:message name="ConsultarUsuarioResponse">
+        <wsdl:part name="usuario" element="tns:Usuario"/>
+    </wsdl:message>
+
+    <wsdl:message name="ModificarUsuarioRequest">
+        <wsdl:part name="usuario" element="tns:Usuario"/>
+    </wsdl:message>
+
+    <wsdl:message name="ModificarUsuarioResponse">
+        <wsdl:part name="respuesta" element="xs:string"/>
+    </wsdl:message>
+
+    <wsdl:message name="EliminarUsuarioRequest">
+        <wsdl:part name="usuarioID" element="tns:UsuarioID"/>
+    </wsdl:message>
+
+    <wsdl:message name="EliminarUsuarioResponse">
+        <wsdl:part name="respuesta" element="xs:string"/>
+    </wsdl:message>
+
+    <!-- Definición de las operaciones -->
+    <wsdl:portType name="UsuarioPortType">
+        <wsdl:operation name="CrearUsuario">
+            <wsdl:input message="tns:CrearUsuarioRequest"/>
+            <wsdl:output message="tns:CrearUsuarioResponse"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="ConsultarUsuario">
+            <wsdl:input message="tns:ConsultarUsuarioRequest"/>
+            <wsdl:output message="tns:ConsultarUsuarioResponse"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="ModificarUsuario">
+            <wsdl:input message="tns:ModificarUsuarioRequest"/>
+            <wsdl:output message="tns:ModificarUsuarioResponse"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="EliminarUsuario">
+            <wsdl:input message="tns:EliminarUsuarioRequest"/>
+            <wsdl:output message="tns:EliminarUsuarioResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- Enlace SOAP -->
+    <wsdl:binding name="UsuarioSoapBinding" type="tns:UsuarioPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        
+        <wsdl:operation name="CrearUsuario">
+            <soap:operation soapAction="http://example.com/usuario/CrearUsuario"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="ConsultarUsuario">
+            <soap:operation soapAction="http://example.com/usuario/ConsultarUsuario"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="ModificarUsuario">
+            <soap:operation soapAction="http://example.com/usuario/ModificarUsuario"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="EliminarUsuario">
+            <soap:operation soapAction="http://example.com/usuario/EliminarUsuario"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!-- Definición del servicio -->
+    <wsdl:service name="UsuarioService">
+        <wsdl:port name="UsuarioPort" binding="tns:UsuarioSoapBinding">
+            <soap:address location="http://example.com/usuario/UsuarioService"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
