@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:tns="http://www.medicas.org/CitasService"
+                  targetNamespace="http://www.medicas.org/CitasService">
+
+    <wsdl:types>
+        <xs:schema targetNamespace="http://www.medicas.org/CitasService" 	elementFormDefault="qualified">
+            <xs:include schemaLocation="CitasService.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="CrearCitaRequest">
+        <wsdl:part name="parameter" element="tns:CrearCitaRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="CrearCitaResponse">
+        <wsdl:part name="parameter" element="tns:CrearCitaResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="ConsultarCitasRequest">
+        <wsdl:part name="parameter" element="tns:ConsultarCitasRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="ConsultarCitasResponse">
+        <wsdl:part name="parameter" element="tns:ConsultarCitasResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="EliminarCitaRequest">
+        <wsdl:part name="parameter" element="tns:EliminarCitaRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="EliminarCitaResponse">
+        <wsdl:part name="parameter" element="tns:EliminarCitaResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="CitasPortType">
+        <wsdl:operation name="CrearCitaOperation">
+            <wsdl:input message="tns:CrearCitaRequest"/>
+            <wsdl:output message="tns:CrearCitaResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ConsultarCitasOperation">
+            <wsdl:input message="tns:ConsultarCitasRequest"/>
+            <wsdl:output message="tns:ConsultarCitasResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="EliminarCitaOperation">
+            <wsdl:input message="tns:EliminarCitaRequest"/>
+            <wsdl:output message="tns:EliminarCitaResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="CitasBinding" type="tns:CitasPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="CrearCitaOperation">
+            <soap:operation soapAction="http://www.example.org/CitasService/CrearCita"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConsultarCitasOperation">
+            <soap:operation soapAction="http://www.example.org/CitasService/ConsultarCitas"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="EliminarCitaOperation">
+            <soap:operation soapAction="http://www.example.org/CitasService/EliminarCita"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="CitasService">
+        <wsdl:port name="CitasPort" binding="tns:CitasBinding">
+            <soap:address location="http://localhost:8080/CitasService"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

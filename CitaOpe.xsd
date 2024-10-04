@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.medicas.org/CitasService" targetNamespace="http://www.medicas.org/CitasService" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <!-- Operación de Crear Cita -->
+    <!-- Definir el elemento CrearCitaRequest en lugar del tipo -->
+	<xs:element name="CrearCitaRequest">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="Cita" type="xs:string"/>
+            <xs:element name="CitaType" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+	</xs:element>
+
+
+    <xs:element name="CrearCitaResponse">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="Cita" type="xs:string"/>
+            <xs:element name="Mensaje" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    </xs:element>
+
+    <!-- Operación de Consultar Citas -->
+    <xs:element name="ConsultarCitasRequest">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="UsuarioID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="U-[0-9]{5}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+     </xs:element>
+
+	<xs:element name="ConsultarCitasResponse">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="Citas" type="xs:Name" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="CitaType"/>
+        </xs:sequence>
+    </xs:complexType>
+    </xs:element>
+
+    <!-- Operación de Eliminar Cita -->
+    <xs:element name="EliminarCitaRequest">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="CitaID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="C-[0-9]{5}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    </xs:element>
+
+	<xs:element name="EliminarCitaResponse">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="Mensaje" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    </xs:element>
+</xs:schema>
